@@ -10,16 +10,33 @@ import MapKit
 
 struct LocationView: View {
     @EnvironmentObject private var vm : LocationViewModel
-   // @State var showList : Bool = false
+    // @State var showList : Bool = false
     var body: some View {
         
         ZStack{
             Map(coordinateRegion: $vm.mapRegion)
                 .ignoresSafeArea()
+            
             VStack{
                 header
-                 .padding()
+                    .padding()
+                
                 Spacer()
+                
+                ZStack{
+                    ForEach(vm.locations) { location in
+                        if vm.mapLocation == location {
+                            LocationPreviewView(location:location)
+                                .shadow(color: .black.opacity(0.3), radius: 20)
+                                .padding()
+                                .animation(.easeInOut(duration: 0.5))
+                                .transition(.asymmetric(
+                                    insertion: .move(edge: .trailing),
+                                    removal: .move(edge: .leading)))
+                        }
+                    }
+                }
+                
             }
         }
     }
@@ -57,7 +74,7 @@ extension LocationView {
             
             if vm.showList{
                 LocationListView()
-              
+                
             }
         }
         .background(.thinMaterial)
