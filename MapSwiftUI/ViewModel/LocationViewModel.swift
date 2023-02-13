@@ -44,12 +44,16 @@ class LocationViewModel : ObservableObject{
         
     }
     
+    
     func showNextLocation(location : Location){
-        mapLocation = location
-        showList = false
+        withAnimation(Animation.easeInOut(duration: 0.5)){
+            mapLocation = location
+            showList = false
+        }
+       
     }
     
-    
+    //Next button int the preview card
     func nextButtonPressed(){
         
         guard let currentIndex = locations.firstIndex(where: {$0 == mapLocation}) else {
