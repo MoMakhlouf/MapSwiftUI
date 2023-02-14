@@ -4,13 +4,15 @@
 //
 //  Created by Mohamed Makhlouf Ahmed on 12/02/2023.
 //
-
+import Foundation
 import SwiftUI
 import MapKit
+import WebKit
 
 struct LocationView: View {
     @EnvironmentObject private var vm : LocationViewModel
     // @State var showList : Bool = false
+    @State var maxWidth : CGFloat = 700
     var body: some View {
         
         ZStack{
@@ -18,10 +20,14 @@ struct LocationView: View {
              .ignoresSafeArea()
             VStack{
               headerList
+                .frame(maxWidth: maxWidth)
                 .padding()
               Spacer()
               mapPreviewView
             }
+        }
+        .sheet(item: $vm.detailSheet) { location in
+            LocationDetailsView(location: location)
         }
     }
 }
@@ -85,6 +91,8 @@ extension LocationView {
                 if vm.mapLocation == location {
                     LocationPreviewView(location:location)
                         .shadow(color: .black.opacity(0.3), radius: 20)
+                        .frame(maxWidth: 700)
+                        .frame(maxWidth: .infinity)
                         .padding()
                         .animation(.easeInOut(duration: 0.5))
                         .transition(.asymmetric(
@@ -93,5 +101,9 @@ extension LocationView {
                 }
             }
         }
+        
     }
 }
+
+
+

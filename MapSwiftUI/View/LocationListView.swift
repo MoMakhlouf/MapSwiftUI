@@ -38,7 +38,6 @@ struct LocationListView_Previews: PreviewProvider {
 
 extension LocationListView {
     private func listRowView(location : Location) -> some View {
-     
         HStack{
             if let imageName = location.imageNames.first{
                 Image(imageName)

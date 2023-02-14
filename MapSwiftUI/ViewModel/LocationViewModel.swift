@@ -9,6 +9,7 @@ import Foundation
 import MapKit
 import SwiftUI
 class LocationViewModel : ObservableObject{
+    @Published var detailSheet : Location? = nil
     @Published var showList : Bool = false
     @Published var locations : [Location]
     @Published var mapLocation : Location {

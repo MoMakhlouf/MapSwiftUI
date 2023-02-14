@@ -22,6 +22,7 @@ class LocationsDataService {
                 "rome-colosseum-3",
             ],
             link: "https://en.wikipedia.org/wiki/Colosseum"),
+        
         Location(
             name: "Pantheon",
             cityName: "Rome",
